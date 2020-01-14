@@ -13,6 +13,9 @@ app.app_context().push()
 manager = Manager(app)
 migrate = Migrate(app, db, render_as_batch=True)
 manager.add_command("db", MigrateCommand)
+add_resources(app)
+app.register_blueprint(api_blueprint)
+register_blueprints(app)
 
 #app = Flask(__name__)
 
@@ -47,7 +50,4 @@ def test():
 
 
 if __name__ == "__main__":
-    add_resources(app)
-    app.register_blueprint(api_blueprint)
-    register_blueprints(app)
-    app.run()
+    manager.run()
