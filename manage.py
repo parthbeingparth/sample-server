@@ -1,6 +1,6 @@
 import os
 import unittest
-
+from flask import Flask
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from app.main import create_app, db
@@ -8,11 +8,18 @@ from app.main.routes import add_resources, register_blueprints
 from app.main.models import *
 from app.main import api, api_blueprint
 
-app = create_app(os.getenv("FLASK_ENV") or "dev")
-app.app_context().push()
-manager = Manager(app)
-migrate = Migrate(app, db, render_as_batch=True)
-manager.add_command("db", MigrateCommand)
+#app = create_app(os.getenv("FLASK_ENV") or "dev")
+#app.app_context().push()
+#manager = Manager(app)
+#migrate = Migrate(app, db, render_as_batch=True)
+#manager.add_command("db", MigrateCommand)
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World! Parth'
+
 
 
 @manager.command
@@ -40,7 +47,4 @@ def test():
 
 
 if __name__ == "__main__":
-    add_resources(app)
-    app.register_blueprint(api_blueprint)
-    register_blueprints(app)
     app.run()
