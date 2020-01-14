@@ -40,4 +40,7 @@ def test():
 
 
 if __name__ == "__main__":
-    manager.run()
+    add_resources(app)
+    app.register_blueprint(api_blueprint)
+    register_blueprints(app)
+    app.run()
