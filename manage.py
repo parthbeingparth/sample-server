@@ -9,10 +9,10 @@ from app.main.models import *
 from app.main import api, api_blueprint
 
 app = create_app(os.getenv("FLASK_ENV") or "dev")
-#app.app_context().push()
-#manager = Manager(app)
-#migrate = Migrate(app, db, render_as_batch=True)
-#manager.add_command("db", MigrateCommand)
+app.app_context().push()
+manager = Manager(app)
+migrate = Migrate(app, db, render_as_batch=True)
+manager.add_command("db", MigrateCommand)
 
 #app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def hello_world():
 
 
 
-'''@manager.command
+@manager.command
 def run():
     """
     This method runs the flask app using manager command
@@ -45,6 +45,6 @@ def test():
         return 0
     return 1
 
-'''
+
 if __name__ == "__main__":
     app.run()
