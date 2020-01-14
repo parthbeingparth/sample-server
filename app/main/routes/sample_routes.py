@@ -36,3 +36,8 @@ class ManyToManyChild(Resource):
         data = request.get_json()
         parent_data = dict()
         return save_child_4(data=parent_data)
+
+class TestRoute(Resource):
+    @classmethod
+    def get(cls):
+        return 'Hello Route'

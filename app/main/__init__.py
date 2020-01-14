@@ -5,6 +5,8 @@ from flask import Flask, Blueprint, request
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from routes import add_resources, register_blueprints
+from models import *
 
 # from flask_jwt_extended import JWTManager
 
@@ -34,6 +36,9 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config_by_name[config_name])
     add_extentions(app=app)
+    add_resources(app)
+    app.register_blueprint(api_blueprint)
+    register_blueprints(app)
 
     @app.after_request
     def after_request(response):

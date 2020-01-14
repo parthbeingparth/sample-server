@@ -11,6 +11,7 @@ from app.main.routes.sample_routes import (
     OneToMany,
     ManyToMany,
     ManyToManyChild,
+    TestRoute,
 )
 
 
@@ -29,6 +30,7 @@ def add_resources(app):
     api.add_resource(OneToMany, "/onetomany")
     api.add_resource(ManyToMany, "/manytomany")
     api.add_resource(ManyToManyChild, "/manytomanychild")
+    api.add_resource(TestRoute, "/testroute")
 
 
 def register_blueprints(app):
